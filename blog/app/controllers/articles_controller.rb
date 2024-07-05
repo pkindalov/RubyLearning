@@ -35,9 +35,9 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # run next commands to work delete - https://github.com/rails/rails/issues/44185?ref=nelson.cloud
-  # $ rails importmap:install
-  # $ rails turbo:install stimulus:install
+  # put this in application.html.erb to make destroy action to work
+  # when click on the link for deleting the article.
+  # <%= javascript_include_tag  "turbo" ,type: "module" %>
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
