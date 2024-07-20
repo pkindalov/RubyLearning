@@ -1,24 +1,43 @@
-# README
+# Инструкции за стартиране и тестване на API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Инсталиране на зависимости и стартиране на сървъра
 
-Things you may want to cover:
+1. Стартирайте инсталацията на зависимости:
+    ```bash
+    bundle install
+    ```
 
-* Ruby version
+2. Извършете миграциите на базата данни:
+    ```bash
+    rails db:migrate
+    ```
 
-* System dependencies
+3. Стартирайте Rails сървъра:
+    ```bash
+    rails server
+    ```
 
-* Configuration
+## Тестване на `/register` ендпойнт
 
-* Database creation
+Можете да тествате `/register` ендпойнта по следния начин:
 
-* Database initialization
+### С помощта на `curl`:
+```bash
+curl -X POST http://localhost:3000/api/v1/register \
+     -H "Content-Type: application/json" \
+     -d "{\"user\": {\"email\": \"user@abv.bg\", \"password\": \"yourpassword\"}}"
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+###Или използвайки Postman, изпратете следния JSON:
+{
+    "user": {
+        "email": "user@abv.bg",
+        "password": "yourpassword"
+    }
+}
 
-* Deployment instructions
+Ако всичко е правилно конфигурирано, резултатът трябва да бъде:
 
-* ...
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.9qMxwbErqJdMmL5ELTH8ONLAjFMf6kwNBvXDCUFW4kI"
+}
