@@ -1,3 +1,54 @@
+# Instructions for Running and Testing the API
+
+## Installing Dependencies and Starting the Server
+
+1. Install dependencies:
+    ```bash
+    bundle install
+    ```
+
+2. Run database migrations:
+    ```bash
+    rails db:migrate
+    ```
+
+3. Start the Rails server:
+    ```bash
+    rails server
+    ```
+
+## Testing the `/register` Endpoint
+
+You can test the `/register` endpoint in the following ways:
+
+### Using `curl`:
+```bash
+curl -X POST http://localhost:3000/api/v1/register -H "Content-Type: application/json" -d "{\"user\": {\"email\": \"user@abv.bg\", \"password\": \"yourpassword\"}}"
+```
+
+### Or using Postman, send the following JSON:
+```bash
+{
+    "user": {
+        "email": "user@abv.bg",
+        "password": "yourpassword"
+    }
+}
+```
+
+If everything is configured correctly, the result should be:
+
+```bash
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.9qMxwbErqJdMmL5ELTH8ONLAjFMf6kwNBvXDCUFW4kI"
+}
+```
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 # Инструкции за стартиране и тестване на API
 
 ## Инсталиране на зависимости и стартиране на сървъра
