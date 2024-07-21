@@ -24,17 +24,10 @@ class AuthenticationMiddleware
 
   private
 
-  def excluded_path?(path)
+def excluded_path?(path)
     # Проверка на пътища за логване и регистрация
-    excluded_paths = [
-      '/api/v1/login',
-      '/api/v1/register'
-    ]
-
-    # Преобразува пътя в относителен формат
-    path = path.sub(/^\/api\/v1\//, '/')
-
-    excluded_paths.any? { |excluded_path| path.start_with?(excluded_path) }
+    excluded_paths = %w[/api/v1/login /api/v1/register]
+    excluded_paths.include?(path)
   end
 
   def extract_token(request)
