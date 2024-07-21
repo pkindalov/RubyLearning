@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   before_action :authenticate_request!
 
   private
 
   def authenticate_request!
-    token = request.headers['Authorization']
-    Rails.logger.info "Authorization Header in Controller: #{token}" # Дебъг
+    token = request.headers['Authorization']&.split(' ')&.last
 
     if token.present?
       begin
-        decoded_token = JWT.decode(token, Rails.application.credentials.secret_key_base)
-        user_id = decoded_token.first['sub']
+        decoded_token = JWT.decode(token, Rails.application.secret_key_base, true, algorithm: 'HS256')
+        user_id = decoded_token.first['user_id']
         @current_user = User.find(user_id) if user_id
       rescue JWT::DecodeError
         render json: { error: 'Unauthorized' }, status: :unauthorized

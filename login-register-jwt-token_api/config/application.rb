@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 require_relative '../app/middleware/authentication_middleware'
 
 # Require the gems listed in Gemfile, including any gems
