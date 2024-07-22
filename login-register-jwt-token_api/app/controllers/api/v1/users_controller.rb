@@ -36,6 +36,11 @@ module Api
         end
       end
 
+      def list
+        users = User.select(:id, :email, :created_at, :updated_at)
+        render json: { users: }, status: :ok
+      end
+
       private
 
       def user_params
